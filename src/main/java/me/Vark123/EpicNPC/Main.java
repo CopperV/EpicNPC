@@ -26,9 +26,10 @@ public class Main extends JavaPlugin {
 		ListenerManager.registerListeners();
 		FileManager.init();
 
-		Bukkit.getOnlinePlayers().parallelStream().forEach(p -> {
-			NpcManager.get().getNpcs().values().parallelStream().forEach(npc -> {
-				EpicNpcSpawnEvent event = new EpicNpcSpawnEvent(p, npc, true);
+		Bukkit.getOnlinePlayers().stream().forEach(p -> {
+			NpcManager.get().initNpcs();
+			NpcManager.get().getNpcs().values().stream().forEach(npc -> {
+				EpicNpcSpawnEvent event = new EpicNpcSpawnEvent(p, npc);
 				Bukkit.getPluginManager().callEvent(event);
 				if (event.isCancelled())
 					return;
