@@ -1,0 +1,10 @@
+name: EpicNPC
+version: 1.0
+main: me.Vark123.EpicNPC.Main
+author: Vark123
+depend: [EpicRPGSkillsAndQuests2,MultiWorld,ServersNPC,WorldGuard]
+load: POSTWORLD
+api-version: 1.18
+
+commands:
+  enpc:
