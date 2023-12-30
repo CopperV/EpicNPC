@@ -118,4 +118,8 @@ public class Npc {
 		npc.lookAt(user, p.getLocation(), false);
 	}
 	
+	public String getName() {
+		return model.getHologramLines().get(0);
+	}
+	
 }
