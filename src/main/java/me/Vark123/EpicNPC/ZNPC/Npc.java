@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import io.github.gonalez.znpcs.npc.ItemSlot;
 import io.github.gonalez.znpcs.npc.NPC;
 import io.github.gonalez.znpcs.npc.NPCModel;
+import io.github.gonalez.znpcs.npc.NPCType;
 import io.github.gonalez.znpcs.user.ZUser;
 import io.github.gonalez.znpcs.utility.location.ZLocation;
 import lombok.EqualsAndHashCode;
@@ -78,6 +79,10 @@ public class Npc {
 			model.setSignature(signature);
 		}
 		
+		if(section.contains("mob-type")) {
+			model.setNpcType(NPCType.valueOf(section.getString("mob-type").toUpperCase()));
+		}
+		
 		if(section.contains("eq")) {
 			ConfigurationSection eqSection = section.getConfigurationSection("eq");
 			Map<ItemSlot, ItemStack> eq = new ConcurrentHashMap<>();
@@ -116,6 +121,10 @@ public class Npc {
 	public void lookAt(Player p) {
 		ZUser user = new ZUser(p.getUniqueId());
 		npc.lookAt(user, p.getLocation(), false);
+	}
+	
+	public String getName() {
+		return model.getHologramLines().get(0);
 	}
 	
 }
