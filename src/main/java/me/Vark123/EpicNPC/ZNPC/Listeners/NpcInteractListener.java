@@ -1,9 +1,11 @@
 package me.Vark123.EpicNPC.ZNPC.Listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 import io.github.gonalez.znpcs.npc.NPC;
 import io.github.gonalez.znpcs.npc.event.NPCInteractEvent;
@@ -23,6 +25,12 @@ public class NpcInteractListener implements Listener {
 		if(epicNpc == null)
 			return;
 		Player p = e.getPlayer();
+		
+		ItemStack it = p.getInventory().getItemInMainHand();
+		if(it != null && it.getType().equals(Material.FISHING_ROD)
+				&& p.getWorld().getName().equals("Tanalorr")) {
+			return;
+		}
 		
 		EpicNpcInteractEvent event = new EpicNpcInteractEvent(p, epicNpc, e.isAsynchronous());
 		Bukkit.getPluginManager().callEvent(event);
