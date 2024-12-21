@@ -3,10 +3,9 @@ package me.Vark123.EpicNPC;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.gonalez.znpcs.user.ZUser;
 import lombok.Getter;
+import me.Vark123.EpicNPC.Core.EpicNPCManager;
 import me.Vark123.EpicNPC.Events.EpicNpcSpawnEvent;
-import me.Vark123.EpicNPC.ZNPC.NpcManager;
 
 @Getter
 public class Main extends JavaPlugin {
@@ -27,24 +26,24 @@ public class Main extends JavaPlugin {
 		FileManager.init();
 
 		Bukkit.getOnlinePlayers().stream().forEach(p -> {
-			NpcManager.get().initNpcs();
-			NpcManager.get().getNpcs().values().stream().forEach(npc -> {
+			EpicNPCManager.get().initNpcs();
+			EpicNPCManager.get().getNpcs().values().stream().forEach(npc -> {
 				EpicNpcSpawnEvent event = new EpicNpcSpawnEvent(p, npc);
 				Bukkit.getPluginManager().callEvent(event);
 				if (event.isCancelled())
 					return;
-				ZUser user = new ZUser(p.getUniqueId());
-				npc.getNpc().spawn(user);
+				npc.getNpc().spawn(p);
 			});
 		});
 	}
 
 	@Override
 	public void onDisable() {
-		NpcManager.get().getNpcs().values().parallelStream().forEach(npc -> {
-			npc.getNpc().deleteViewers();
+		EpicNPCManager.get().getNpcs().values().parallelStream().forEach(npc -> {
+			npc.getNpc().removeForAll();
 		});
-		NpcManager.get().getNpcs().clear();
+		EpicNPCManager.get().getNpcs().clear();
+		EpicNPCManager.get().getIdMap().clear();
 	}
 
 }

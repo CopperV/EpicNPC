@@ -1,10 +1,10 @@
 name: EpicNPC
-version: 1.0.2
+version: 1.0.3
 main: me.Vark123.EpicNPC.Main
 author: Vark123
-depend: [MultiWorld,ServersNPC,WorldGuard]
+depend: [Multiverse-Core,FancyNpcs,WorldGuard]
 load: POSTWORLD
-api-version: 1.18
+api-version: 1.21
 
 commands:
   enpc:

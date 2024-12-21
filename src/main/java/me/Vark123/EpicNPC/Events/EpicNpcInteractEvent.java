@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.Vark123.EpicNPC.ZNPC.Npc;
+import me.Vark123.EpicNPC.Core.EpicNPC;
 
 @Getter
 public class EpicNpcInteractEvent extends Event implements Cancellable {
@@ -18,13 +18,13 @@ public class EpicNpcInteractEvent extends Event implements Cancellable {
 	private boolean cancelled;
 
 	private Player player;
-	private Npc npc;
+	private EpicNPC npc;
 	
-	public EpicNpcInteractEvent(Player p, Npc npc) {
+	public EpicNpcInteractEvent(Player p, EpicNPC npc) {
 		this(p, npc, false);
 	}
 	
-	public EpicNpcInteractEvent(Player p, Npc npc, boolean async) {
+	public EpicNpcInteractEvent(Player p, EpicNPC npc, boolean async) {
 		super(async);
 		this.player = p;
 		this.npc = npc;

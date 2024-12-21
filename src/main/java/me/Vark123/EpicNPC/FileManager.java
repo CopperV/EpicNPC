@@ -5,7 +5,8 @@ import java.util.Arrays;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.Vark123.EpicNPC.ZNPC.NpcManager;
+import me.Vark123.EpicNPC.Core.EpicNPC;
+import me.Vark123.EpicNPC.Core.EpicNPCManager;
 
 public final class FileManager {
 
@@ -24,7 +25,8 @@ public final class FileManager {
 			.filter(file -> file.isFile() 
 					&& file.getName().endsWith(".yml"))
 			.map(YamlConfiguration::loadConfiguration)
-			.forEach(NpcManager.get()::registerNpc);
+			.map(EpicNPC::new)
+			.forEach(EpicNPCManager.get()::registerNpc);
 	}
 	
 }

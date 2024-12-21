@@ -5,8 +5,8 @@ import org.bukkit.Bukkit;
 import me.Vark123.EpicNPC.Listeners.EpicNpcLookAtListener;
 import me.Vark123.EpicNPC.Listeners.EpicNpcRunCommandListener;
 import me.Vark123.EpicNPC.Listeners.PlayerJoinListener;
-import me.Vark123.EpicNPC.ZNPC.Listeners.NpcInteractListener;
-import me.Vark123.EpicNPC.ZNPC.Listeners.NpcSpawnListener;
+import me.Vark123.EpicNPC.Listeners.Outer.NpcInteractListener;
+import me.Vark123.EpicNPC.Listeners.Outer.NpcSpawnListener;
 
 public final class ListenerManager {
 
